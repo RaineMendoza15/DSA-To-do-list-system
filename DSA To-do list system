@@ -10,14 +10,17 @@ task_status = {}
 def add_task():
     task_id = task_id_entry.get().strip()
     task_name = task_name_entry.get().strip()
+
 #evaluates if the user did not fill in both input
     if not task_id or not task_name:
         messagebox.showwarning("No Input", "Please fill in both Task ID and Task Name.")
         return
+
 #evaluates if the user input is a number
     if not task_id.isdigit():
         messagebox.showerror("Invalid ID", "Task ID must be a number.")
         return
+
 #evaluates if the user input is already there
     if task_id in task_ids:
         messagebox.showerror("Error", "This Task ID already exists.")
@@ -25,6 +28,7 @@ def add_task():
     if task_name in task_status:
         messagebox.showerror("Error", "This Task is already added.")
         return
+
 #holds the value of the users input
     task_ids[task_id] = task_name
     task_status[task_name] = "Pending"
@@ -35,6 +39,7 @@ def add_task():
 #updates the status of the chosen task to "done"
 def mark_done():
     selected = task_listbox.curselection()
+
 #evaluates if the user did not choose from the message box
     if not selected:
         messagebox.showinfo("Error", "Please select a task.")
@@ -50,6 +55,7 @@ def mark_done():
 #removes the chosen task from the message box
 def remove_task():
     selected = task_listbox.curselection()
+
 #evaluates if the user did not choose from the message box
     if not selected:
         messagebox.showinfo("Error", "Please select a task.")
@@ -66,21 +72,27 @@ system = tk.Tk()
 system.title("To-do list")
 system.geometry("500x500")
 tk.Label(system, text="To-do list", font="ar 15 bold").grid(row=0, column=0, columnspan=5, pady=10)
+
+#user input on task id
 tk.Label(system, text="Task ID:").grid(row=1, column=0, padx=10, sticky="e")
 task_id_entry = tk.Entry(system, width=10)
 task_id_entry.grid(row=1, column=1, sticky="w")
+
+#user input on task name
 tk.Label(system, text="Task:").grid(row=1, column=2, padx=5, sticky="e")
 task_name_entry = tk.Entry(system, width=20)
 task_name_entry.grid(row=1, column=3, padx=10, sticky="w")
-tk.Button(system, text="Add Task", font="ar 10", command=add_task).grid(row=1, column=4, padx=10)
 
 #displays the user input
 task_listbox = tk.Listbox(system, width=60)
 task_listbox.grid(row=2, column=0, columnspan=5, padx=10, pady=20)
 
 #users command
+tk.Button(system, text="Add Task", font="ar 10", command=add_task).grid(row=1, column=4, padx=10)
 tk.Button(system, text="Mark as Done", command=mark_done).grid(row=3, column=0, pady=5)
 tk.Button(system, text="Remove Task", command=remove_task).grid(row=3, column=1, pady=5)
-tk.Button(system, text="Exit", command=system.destroy, width=5).grid(row=3, column=4, pady=5)
+tk.Button(system, text="Exit", command=system.destroy, width=10).grid(row=3, column=4, pady=5)
 
 system.mainloop()
+
+https://github.com/RaineMendoza15/DSA-To-do-list-system/blob/980ef4661e4c9339ae22121469227532e477748b/DSA%20To-do%20list%20system
