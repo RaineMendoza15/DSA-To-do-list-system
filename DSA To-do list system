@@ -94,5 +94,3 @@ tk.Button(system, text="Remove Task", command=remove_task).grid(row=3, column=1,
 tk.Button(system, text="Exit", command=system.destroy, width=10).grid(row=3, column=4, pady=5)
 
 system.mainloop()
-
-https://github.com/RaineMendoza15/DSA-To-do-list-system/blob/980ef4661e4c9339ae22121469227532e477748b/DSA%20To-do%20list%20system
