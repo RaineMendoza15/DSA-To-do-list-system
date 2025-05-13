@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
-#holds the values of inputted ids and status
+#holds the values of entered ids and status
 task_ids = {}
 task_status = {}
 
@@ -16,7 +16,7 @@ def add_task():
         messagebox.showwarning("No Input", "Please fill in both Task ID and Task Name.")
         return
 
-#evaluates if the user input is a number
+#evaluates if the user input is not a number
     if not task_id.isdigit():
         messagebox.showerror("Invalid ID", "Task ID must be a number.")
         return
@@ -32,7 +32,7 @@ def add_task():
 #holds the value of the users input
     task_ids[task_id] = task_name
     task_status[task_name] = "Pending"
-    task_listbox.insert(tk.END, f"{task_id} - {task_name} - Pending")
+    task_listbox.insert(tk.END, f"{task_id} - {task_name.capitalize()} - Pending...")
     task_id_entry.delete(0, tk.END)
     task_name_entry.delete(0, tk.END)
 
@@ -50,7 +50,7 @@ def mark_done():
     task_name = task_ids[task_id]
     task_status[task_name] = "Done"
     task_listbox.delete(task_number)
-    task_listbox.insert(task_number, f"{task_id} - {task_name} - Done")
+    task_listbox.insert(task_number, f"{task_id} - {task_name.capitalize()} - Done✅")
 
 #removes the chosen task from the message box
 def remove_task():
@@ -93,4 +93,5 @@ tk.Button(system, text="Mark as Done", command=mark_done).grid(row=3, column=0, 
 tk.Button(system, text="Remove Task", command=remove_task).grid(row=3, column=1, pady=5)
 tk.Button(system, text="Exit", command=system.destroy, width=10).grid(row=3, column=4, pady=5)
 
+#execution of the GUI in a loop
 system.mainloop()
